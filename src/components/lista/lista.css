@@ -1,0 +1,33 @@
+.product {
+  min-width: 343px;
+  min-height: 300px;
+  border: 1px solid #353a47;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+}
+.product img {
+  max-width: 300px;
+  max-height: 200px;
+  position: relative;
+}
+.productSKU {
+  width: fit-content;
+  color: #353a47;
+  justify-self: start;
+  background-color: #fff;
+  padding: 5px;
+  /* border: 1px solid #353a47; */
+}
+.productName {
+  width: fit-content;
+  color: #353a47;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #353a47;
+}

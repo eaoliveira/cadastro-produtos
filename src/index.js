@@ -11,14 +11,18 @@ import {
 } from "react-router-dom";
 import Cadastro from "./components/cadastro/Cadastro";
 import Menu from "./components/menu/Menu";
+import Listagem from "./components/lista/Lista";
 // import { UserProvider } from "./components/Context/UserContext";
 import "./styles.css";
 ReactDOM.render(
   <Router>
     <Menu />
     <Switch>
-      <Route path="/">
+      <Route path="/cadastro">
         <Cadastro />
+      </Route>
+      <Route path="/listagem">
+        <Listagem />
       </Route>
     </Switch>
   </Router>,
