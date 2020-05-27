@@ -1,0 +1,32 @@
+.form-cadastro {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  flex-wrap: wrap;
+  background-color: #dc136c;
+  padding: 20px;
+}
+.form-item {
+  margin: 10px;
+  border: 2px solid #dc136c;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+}
+.form-item:hover::placeholder {
+  color: #dc136c;
+}
+img {
+  width: 50vw;
+}
+
+.form-item:focus {
+  border: 2px solid #84b082;
+}
+.form-item::placeholder {
+  color: #aaa;
+}
+button {
+  padding: 20px;
+  background-color: #f7f0f0;
+}
