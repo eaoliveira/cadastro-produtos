@@ -1,72 +1,35 @@
 import React, { useState, useCallback } from "react";
 import { Container } from "../../styles.js";
 import "./lista.css";
+import { Link } from "react-router-dom";
+
 export default function Listagem() {
-  const list = [
-    {
-      SKU: "123123123123",
-      nameProduct: "Vestido Vermelho",
-      description: "123",
-      price: "20",
-      qnt: "2",
-      img:
-        "https://t-static.dafiti.com.br/Bxc6xxJx2Xpr3QVUolJH2apBdKY=/fit-in/430x623/static.dafiti.com.br/p/racy-modas-vestido-racy-modas-midi-alcinha-dupla-vermelho-5727-8617283-1-zoom.jpg",
-    },
-    {
-      SKU: "123",
-      nameProduct: "123",
-      description: "123",
-      price: "20",
-      qnt: "2",
-      img:
-        "https://t-static.dafiti.com.br/Bxc6xxJx2Xpr3QVUolJH2apBdKY=/fit-in/430x623/static.dafiti.com.br/p/racy-modas-vestido-racy-modas-midi-alcinha-dupla-vermelho-5727-8617283-1-zoom.jpg",
-    },
-    {
-      SKU: "123",
-      nameProduct: "123",
-      description: "123",
-      price: "20",
-      qnt: "2",
-      img:
-        "https://t-static.dafiti.com.br/Bxc6xxJx2Xpr3QVUolJH2apBdKY=/fit-in/430x623/static.dafiti.com.br/p/racy-modas-vestido-racy-modas-midi-alcinha-dupla-vermelho-5727-8617283-1-zoom.jpg",
-    },
-    {
-      SKU: "123",
-      nameProduct: "123",
-      description: "123",
-      price: "20",
-      qnt: "2",
-      img:
-        "https://t-static.dafiti.com.br/Bxc6xxJx2Xpr3QVUolJH2apBdKY=/fit-in/430x623/static.dafiti.com.br/p/racy-modas-vestido-racy-modas-midi-alcinha-dupla-vermelho-5727-8617283-1-zoom.jpg",
-    },
-    {
-      SKU: "123",
-      nameProduct: "123",
-      description: "123",
-      price: "20",
-      qnt: "2",
-      img:
-        "https://t-static.dafiti.com.br/Bxc6xxJx2Xpr3QVUolJH2apBdKY=/fit-in/430x623/static.dafiti.com.br/p/racy-modas-vestido-racy-modas-midi-alcinha-dupla-vermelho-5727-8617283-1-zoom.jpg",
-    },
-  ];
+  const list = JSON.parse(localStorage.getItem("produtos"));
 
   return (
     <Container>
       <div className="productList">
-        {list.map((produto) => (
-          <div
-            key={produto.SKU}
-            className="product"
-            style={{ backgroundImage: "url(" + produto.img + ")" }}
-          >
-            <div className="productSKU"> {produto.SKU}</div>
-            <div>
-              <div className="productName"> {produto.price}</div>
+        {list &&
+          list.map((produto) => (
+            <div
+              key={produto.SKU}
+              className="product"
+              style={{ backgroundImage: "url(" + produto.img + ")" }}
+            >
+              <div className="botao-editar">Editar</div>
+              <div>
+                <div className="productName">R$ {produto.price}</div>
 
-              <div className="productName"> {produto.nameProduct}</div>
+                <div className="productName"> {produto.nameProduct}</div>
+                <div className="productSKU">SKU: {produto.SKU}</div>
+              </div>
+              <Link to={"/detalhes/" + produto.SKU}>
+                <div title="Visualizar Detalhes" className="detalhes">
+                  +
+                </div>
+              </Link>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </Container>
   );

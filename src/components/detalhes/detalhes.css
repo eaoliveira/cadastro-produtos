@@ -1,0 +1,26 @@
+.container-detalhe {
+    display: flex;
+    align-items: flex-start;
+}
+
+.container-detalhe .foto {
+    min-width: 400px;
+    min-height: 400px;
+}
+.form-item button {
+    width: 50%;
+}
+
+.botao-voltar {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    background-color: #dc136c;
+    color: #fff;
+    padding: 10px;
+}
+
+.detalhes-produto {
+    display: flex;
+    flex-direction: column;
+}

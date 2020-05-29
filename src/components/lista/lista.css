@@ -1,12 +1,54 @@
 .product {
-  min-width: 343px;
+  min-width: 310px;
   min-height: 300px;
   border: 1px solid #353a47;
   display: flex;
   flex-direction: column;
+  padding: 10px;
   justify-content: space-between;
+  margin: 7px;
 }
 
+.botao-editar {
+  padding: 10px;
+  background-color: #84b082;
+  color: #fff;
+  border-radius: 10px;
+  visibility: hidden;
+  width: fit-content;
+}
+
+.detalhes {
+  border-radius: 50px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 30px;
+  padding: 2px;
+  visibility: hidden;
+  text-decoration: none;
+  color: #fff;
+  background-color: #353a47;
+}
+.detalhes Link {
+  color: #fff;
+
+  text-decoration: none;
+}
+
+.product:hover .detalhes {
+  text-decoration: none;
+
+  cursor: pointer;
+  visibility: visible;
+}
+.product:hover .botao-editar {
+  display: inline;
+  cursor: pointer;
+  visibility: visible;
+}
 .productList {
   display: flex;
   flex-wrap: wrap;
@@ -22,12 +64,14 @@
   justify-self: start;
   background-color: #fff;
   padding: 5px;
+  font-size: 8px;
   /* border: 1px solid #353a47; */
 }
 .productName {
   width: fit-content;
-  color: #353a47;
-  background-color: #fff;
+  margin: 5px;
+  color: #fff;
+  background-color: #dc136c;
   padding: 10px;
-  border: 1px solid #353a47;
+  /* border: 1px solid #353a47; */
 }

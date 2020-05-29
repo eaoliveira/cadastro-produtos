@@ -12,6 +12,8 @@ import {
 import Cadastro from "./components/cadastro/Cadastro";
 import Menu from "./components/menu/Menu";
 import Listagem from "./components/lista/Lista";
+import Detalhes from "./components/detalhes/Detalhes";
+
 // import { UserProvider } from "./components/Context/UserContext";
 import "./styles.css";
 ReactDOM.render(
@@ -24,6 +26,11 @@ ReactDOM.render(
       <Route path="/listagem">
         <Listagem />
       </Route>
+      <Route
+        exact
+        path="/detalhes/:id"
+        render={(props) => <Detalhes {...props} />}
+      />
     </Switch>
   </Router>,
   document.getElementById("root")

@@ -15,6 +15,15 @@ export default function Cadastro() {
   const [product, setProduct] = useState(valorInicial);
   var listaProduto = [];
 
+  const handleKeyUp = useCallback((e) => {
+    let value;
+    value = e.target.value;
+    value = value.replace(/\D/g, "");
+    value = value.replace(/(\d)(\d{2})$/, "$1,$2");
+    value = value.replace(/(?=(\d{3})+(\D))\B/g, ".");
+    e.target.value = value;
+  }, []);
+
   const handleChange = useCallback(
     (e) => {
       setProduct({
@@ -26,11 +35,15 @@ export default function Cadastro() {
   );
 
   const validateDuplicate = useCallback((e) => {
-    if (listaProduto.find((a) => a.SKU === product.SKU)) {
-      return false;
-    }
+    if (
+      listaProduto.findIndex((a) => a.SKU === product.SKU) !== -1 &&
+      listaProduto.length > 0
+    ) {
+      alert("SKU Duplicado");
 
-    return true;
+      return true;
+    }
+    return false;
   });
 
   const validateSubmit = useCallback(
@@ -45,16 +58,11 @@ export default function Cadastro() {
       ) {
         return true;
       }
+      alert("Algum campo está vazio");
+
       return false;
     },
-    [
-      product.SKU,
-      product.description,
-      product.img,
-      product.nameProduct,
-      product.price,
-      product.qnt,
-    ]
+    [product]
   );
 
   const handleSubmit = useCallback(
@@ -62,11 +70,16 @@ export default function Cadastro() {
       e.preventDefault();
       if (validateSubmit()) {
         if (validateDuplicate()) {
-          alert("SKU Duplicado");
+          return;
         }
         listaProduto.push(product);
-      } else {
-        alert("Algum campo está vazio");
+        let produtos = [];
+        if (localStorage.getItem("produtos") != undefined) {
+          produtos = [...JSON.parse(localStorage.getItem("produtos")), product];
+        } else {
+          produtos.push(product);
+        }
+        localStorage.setItem("produtos", JSON.stringify(produtos));
       }
       console.log(listaProduto);
     },
@@ -83,13 +96,15 @@ export default function Cadastro() {
           name="SKU"
           value={product.SKU || ""}
           onChange={handleChange}
+          required={true}
         ></input>
         <input
           placeholder="Nome do Produto"
           className="form-item"
-          name="name"
-          value={product.name || ""}
+          name="nameProduct"
+          value={product.nameProduct || ""}
           onChange={handleChange}
+          required={true}
         ></input>
         <textarea
           placeholder="Descrição"
@@ -97,13 +112,14 @@ export default function Cadastro() {
           name="description"
           value={product.description || ""}
           onChange={handleChange}
+          required={true}
         ></textarea>
         <input
           placeholder="Preço de Venda"
           className="form-item"
           name="price"
-          type="number"
           value={product.price || ""}
+          onKeyUp={handleKeyUp}
           onChange={handleChange}
         ></input>
         <input
@@ -113,6 +129,7 @@ export default function Cadastro() {
           value={product.qnt || ""}
           type="number"
           onChange={handleChange}
+          required={true}
         ></input>
         <input
           placeholder="Imagem"
@@ -120,6 +137,7 @@ export default function Cadastro() {
           name="img"
           value={product.img || ""}
           onChange={handleChange}
+          required={true}
         ></input>
         <button className="form-item">Cadastrar</button>
       </form>
