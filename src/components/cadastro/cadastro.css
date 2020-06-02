@@ -6,6 +6,14 @@
   background-color: #dc136c;
   padding: 20px;
 }
+input:read-only {
+  margin: 10px;
+  border: 2px solid #dc136c;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  background-color: #aaa;
+}
 .form-item {
   margin: 10px;
   border: 2px solid #dc136c;
